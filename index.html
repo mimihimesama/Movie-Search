@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내배캠 최고 평점 영화</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>내배캠 최고 평점 영화 콜렉션</h1>
+      <div class="search-container">
+        <label class="search-label">영화 검색 :</label>
+        <input
+          type="text"
+          id="movieSearchInput"
+          placeholder="영화 제목을 입력하세요"
+        />
+        <button type="submit" id="search-btn" onclick="search_btn()">
+          검색
+        </button>
+      </div>
+    </header>
+    <section class="card-list" id="cards-box">
+      <div class="movie-card">
+        <div class="card-content"></div>
+      </div>
+    </section>
+  </body>
+</html>
