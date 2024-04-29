@@ -9,17 +9,12 @@
   </head>
   <body>
     <header>
-      <h1>내배캠 최고 평점 영화 콜렉션</h1>
+      <h1><img src="image/chiikawa.jpg" width="100" alt="따봉하는 치이카와"</h1>
       <div class="search-container">
-        <label class="search-label">영화 검색 :</label>
-        <input
-          type="text"
-          id="movieSearchInput"
-          placeholder="영화 제목을 입력하세요"
-        />
-        <button type="submit" id="search-btn" onclick="search_btn()">
-          검색
-        </button>
+        <form id="searchForm" onsubmit="return search_enter();">
+          <input type="text" id="movieSearchInput" placeholder="영화 제목을 입력하세요" />
+          <button type>검색</button>
+        </form>
       </div>
     </header>
     <section class="card-list" id="cards-box">

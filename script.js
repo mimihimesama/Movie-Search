@@ -3,14 +3,11 @@ const options = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YjI1MWMwYjcyOWM5ZDI2OTZlMDZjNGQ0YTM4OWI2ZSIsInN1YiI6IjY2MmIyZDE1NmUwZDcyMDExYzFmN2JmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GiFFRR5tmGJ2LoaVoS2ub_xksPO2gGRNSHX4rcPdJUI",
-  },
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YjI1MWMwYjcyOWM5ZDI2OTZlMDZjNGQ0YTM4OWI2ZSIsInN1YiI6IjY2MmIyZDE1NmUwZDcyMDExYzFmN2JmYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.GiFFRR5tmGJ2LoaVoS2ub_xksPO2gGRNSHX4rcPdJUI"
+  }
 };
 
-fetch(
-  "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
-  options
-)
+fetch("https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1", options)
   .then((response) => response.json())
   .then((response) => {
     let movie_list = response["results"];
@@ -47,17 +44,35 @@ function addClickEventToCards() {
   });
 }
 
-function search_btn() {
-  const movie_name_input = document.getElementById("movieSearchInput").value;
-  const card_arr = document.getElementsByClassName("movie-card");
+function search_enter() {
+  const movie_name_input = document.getElementById("movieSearchInput").value.toUpperCase();
+  const card_arr = Array.from(document.getElementsByClassName("movie-card")); // HTMLCollection을 배열로 변환
 
-  for (let i = 0; i < card_arr.length; i++) {
-    const movie_title = card_arr[i].getElementsByTagName("h3")[0].innerText;
+  // 모든 카드의 현재 표시 상태를 저장
+  const originalDisplay = card_arr.map((card) => card.style.display);
 
-    if (movie_title.toUpperCase().includes(movie_name_input.toUpperCase())) {
-      card_arr[i].style.display = "inline-block";
-    } else {
-      card_arr[i].style.display = "none";
-    }
+  // 검색어가 포함된 모든 카드를 필터링
+  const foundCards = card_arr.filter((card) => {
+    const movie_title = card.getElementsByTagName("h3")[0].innerText.toUpperCase();
+    return movie_title.includes(movie_name_input);
+  });
+
+  // 모든 카드의 표시 상태 업데이트
+  card_arr.forEach((card) => {
+    card.style.display = "none"; // 일단 숨김
+  });
+
+  // 필터링된 카드만 표시
+  foundCards.forEach((card) => {
+    card.style.display = "inline-block";
+  });
+
+  if (foundCards.length === 0) {
+    card_arr.forEach((card, index) => {
+      card.style.display = originalDisplay[index];
+    });
+    alert("검색 결과가 없습니다.");
   }
+
+  return false;
 }

@@ -13,24 +13,44 @@ header {
 .search-container {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  padding: 20px;
 }
-.search-label {
-  margin-right: 10px;
-  line-height: 45px;
-  font-size: 25px;
+#searchForm {
+  display: flex;
+  max-width: 500px;
+}
+#movieSearchInput {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+}
+#searchForm button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#searchForm button:hover {
+  background-color: #0056b3;
+}
+#searchForm button:active {
+  background-color: #004085;
 }
 input[type="text"] {
   margin-right: 10px;
-  padding: 10px;
-  font-size: 16px;
   width: 300px;
 }
 .card-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
-  padding: 30px;
 }
 .movie-card {
   margin: 10px;
