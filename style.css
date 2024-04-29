@@ -51,6 +51,7 @@ input[type="text"] {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
+  padding-bottom: 30px;
 }
 .movie-card {
   margin: 10px;
